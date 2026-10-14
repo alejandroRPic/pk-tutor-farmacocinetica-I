@@ -4,8 +4,8 @@ title: "PK Tutor — Farmacocinética I"
 abstract: "Resuelve problemas de bolo intravenoso monocompartimental con razonamiento guiado."
 type: software
 authors:
-  - family-names: "Alejandro Ruiz Picazo"
-    given-names: "Nombre"
+  - family-names: "Ruiz Picazo"
+    given-names: "Alejandro"
     orcid: "https://orcid.org/0000-0003-1281-8208"
     affiliation: "Universidad Miguel Hernández"
 version: 1.0.0
