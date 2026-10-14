@@ -35,6 +35,6 @@ La app funciona íntegramente en el navegador. La clave de API se guarda localme
 
 ---
 
-Alejandro Ruiz Picazo · Universidad Miguel Hernandez · España
+Alejandro Ruiz Picazo · Universidad Miguel Hernández · España
 
 Creada con ForjaIA · Universidad Miguel Hernández de Elche.
