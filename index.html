@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PK Tutor — Farmacocinética I</title>
+<meta name="description" content="Resuelve problemas de bolo intravenoso monocompartimental con razonamiento guiado.">
+<meta name="generator" content="ForjaIA">
+<style>
+:root{--t:#12233A;--a:#2F5175;--ac:#8199B0;--p:#F4F7FA;--b:#6B4FD8;--l:#DAE2EA;--ok:#0E7C6B;--bad:#C2410C;--bs:color-mix(in srgb,var(--b) 11%,#fff)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--p);color:var(--t);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;font-size:16px}
+header{background:var(--t);color:#EAF1F7;padding:26px 20px 24px;border-bottom:4px solid var(--b)}
+.in{max-width:860px;margin:0 auto;position:relative}
+.brand{display:flex;gap:16px;align-items:center;padding-right:120px}
+.ico{width:58px;height:58px;border-radius:16px;background:var(--b);display:grid;place-items:center;font-size:30px;flex:none;box-shadow:0 10px 22px -12px var(--b)}
+header h1{margin:0 0 4px;font-size:clamp(24px,4.6vw,34px);letter-spacing:-.02em;line-height:1.1}
+header p{margin:0;color:#A9C0D4;font-size:15.5px}
+.lang{position:absolute;top:0;right:0;display:flex;gap:4px}
+.lang button{background:transparent;border:1px solid #3E5C7D;color:#A9C0D4;font-size:12px;font-weight:700;padding:5px 9px;border-radius:7px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--b);border-color:var(--b);color:#fff}
+@media(max-width:560px){.brand{padding-right:0;padding-top:34px}.ico{width:46px;height:46px;font-size:24px}}
+main{max-width:860px;margin:0 auto;padding:22px 20px 70px}
+.how{background:var(--bs);border:1px solid color-mix(in srgb,var(--b) 28%,#fff);border-radius:12px;padding:12px 15px;font-size:14.5px;margin-bottom:16px;display:flex;gap:10px}
+.how:empty{display:none}
+.card{background:#fff;border:1px solid var(--l);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 10px 30px -24px rgba(18,35,58,.5)}
+label{display:block;font-size:13.5px;font-weight:600;color:var(--a);margin:0 0 6px}
+input,textarea,select{width:100%;padding:11px 13px;border:1.5px solid var(--l);border-radius:10px;font-size:15.5px;font-family:inherit;color:var(--t);background:#fff}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--b);box-shadow:0 0 0 4px var(--bs)}
+textarea{min-height:96px;resize:vertical;line-height:1.5}
+.f{margin-bottom:14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:600px){.g2{grid-template-columns:1fr}}
+button{font-family:inherit;font-weight:600;font-size:15px;border-radius:10px;border:1.5px solid transparent;cursor:pointer}
+.go{background:var(--b);color:#fff;padding:12px 22px;box-shadow:0 8px 18px -10px var(--b)}
+.go:hover{filter:brightness(.92)}
+.go:disabled{background:#C8D3DD;box-shadow:none;cursor:not-allowed}
+.gh{background:#fff;border-color:var(--l);color:var(--a);padding:9px 14px;font-size:14px}
+.gh:hover{border-color:var(--ac)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.center{justify-content:center}
+.sp{flex:1}
+.msg{font-size:14px;color:#5D7691}
+.msg.err{color:var(--bad);font-weight:600}
+.msg.ok{color:var(--ok);font-weight:600}
+.out{background:#fff;border:1px solid var(--l);border-top:4px solid var(--b);border-radius:14px;padding:24px;font-size:15.5px;line-height:1.7;margin-bottom:14px}
+.out h2{font-size:21px;margin:20px 0 8px;letter-spacing:-.01em}.out h3{font-size:18px;margin:18px 0 6px}.out h4,.out h5{font-size:16px;margin:14px 0 6px}
+.out>*:first-child{margin-top:0}
+.out ul,.out ol{padding-left:22px}.out li{margin:3px 0}
+.out blockquote{margin:12px 0;padding:8px 14px;border-left:4px solid var(--b);background:var(--bs);border-radius:0 8px 8px 0}
+.out code{background:var(--p);padding:1px 5px;border-radius:5px;font-size:.92em}
+.out pre{background:var(--t);color:#E6EEF6;padding:14px;border-radius:10px;overflow:auto}
+.out pre code{background:none;padding:0}
+.tw{overflow-x:auto;margin:12px 0}
+.out table{border-collapse:collapse;width:100%;font-size:14.5px}
+.out th,.out td{border:1px solid var(--l);padding:7px 10px;text-align:left;vertical-align:top}
+.out th{background:var(--p)}
+.out hr{border:0;border-top:1px solid var(--l);margin:18px 0}
+details.cfg{padding:0}
+details.cfg summary{cursor:pointer;padding:13px 18px;font-weight:600;font-size:14.5px;color:var(--a)}
+details.cfg .inner{padding:0 18px 18px}
+.nota{background:#FFF6E5;border:1px solid #F3DDA0;color:#6B4E00;font-size:13.5px;padding:10px 13px;border-radius:9px;margin-bottom:14px}
+footer{max-width:860px;margin:0 auto;padding:16px 20px 50px;font-size:12.5px;color:#6E8299;border-top:1px solid var(--l)}
+:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.hide{display:none!important}
+.spin{display:inline-block;width:16px;height:16px;border:2.5px solid var(--l);border-top-color:var(--b);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* chat */
+.chat{padding:0;overflow:hidden}
+.chead{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--l);background:#FBFCFE}
+.chead .av{width:34px;height:34px;border-radius:50%;background:var(--b);display:grid;place-items:center;font-size:17px}
+.log{padding:18px 16px;display:flex;flex-direction:column;gap:12px;max-height:60vh;min-height:220px;overflow-y:auto;background:linear-gradient(#fff,#FAFCFE)}
+.bub{max-width:82%;padding:11px 14px;border-radius:16px;font-size:15px;line-height:1.55}
+.bub p{margin:0 0 6px}.bub p:last-child{margin:0}.bub ul,.bub ol{margin:4px 0;padding-left:20px}
+.bot{background:var(--p);border:1px solid var(--l);border-bottom-left-radius:5px;align-self:flex-start}
+.me{background:var(--b);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.who{font-size:11.5px;font-weight:700;color:var(--ac);margin:0 4px -8px}
+.who.r{align-self:flex-end}
+.typing{align-self:flex-start;color:var(--ac);font-size:14px}
+.sugs{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 10px}
+.sug{background:#fff;border:1.5px solid color-mix(in srgb,var(--b) 35%,#fff);color:var(--b);border-radius:999px;padding:6px 12px;font-size:13.5px}
+.comp{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--l);align-items:flex-end}
+.comp textarea{min-height:48px;max-height:160px}
+.cfoot{padding:0 16px 14px}
+/* quiz */
+.qtop{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--a);margin-bottom:8px}
+.bar{height:8px;background:var(--p);border-radius:6px;overflow:hidden;margin-bottom:18px}
+.bar span{display:block;height:100%;background:var(--b);width:0;transition:width .3s}
+.qtext{font-size:19px;line-height:1.45;margin:0 0 16px}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;background:#fff;border:1.5px solid var(--l);padding:12px 14px;font-weight:500;color:var(--t);line-height:1.45}
+.opt:hover:not(:disabled){border-color:var(--b);background:var(--bs)}
+.opt .lt{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--ac);display:grid;place-items:center;font-size:13px;font-weight:700;flex:none;color:var(--a)}
+.opt.right{border-color:var(--ok);background:#E3F4EF}.opt.right .lt{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:#FDECE4}.opt.wrong .lt{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt:disabled{cursor:default}
+.fb{border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:15px}
+.fb.good{background:#E3F4EF;color:#0B5A4E}.fb.bad{background:#FDECE4;color:#8A2E0A}
+.fb b{display:block;margin-bottom:3px}
+.ring{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;margin:4px auto 12px;background:conic-gradient(var(--b) calc(var(--v)*1%),var(--p) 0)}
+.ring span{width:118px;height:118px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:30px;font-weight:800}
+.rev{border-top:1px solid var(--l);padding:12px 0;font-size:14.5px}
+.rev .ok{color:var(--ok);font-weight:700}.rev .ko{color:var(--bad);font-weight:700}
+/* tarjetas */
+.flip{perspective:1400px;cursor:pointer;margin:0 auto 10px;max-width:560px;outline:none}
+.flip-in{position:relative;height:280px;transition:transform .55s cubic-bezier(.3,.7,.3,1);transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center;font-size:19px;line-height:1.45;border:1.5px solid var(--l);box-shadow:0 18px 40px -26px rgba(18,35,58,.6)}
+.front{background:#fff}
+.back{background:var(--b);color:#fff;transform:rotateY(180deg);border-color:var(--b)}
+.face small{position:absolute;top:14px;left:18px;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
+.hintb{position:absolute;bottom:14px;background:var(--bs);color:var(--b);border:0;font-size:13px;padding:6px 12px}
+.tapnote{text-align:center;font-size:13px;color:var(--ac);margin:0 0 14px}
+.bad2{border-color:#F2C1AE;color:var(--bad)}.ok2{background:var(--ok);box-shadow:0 8px 18px -10px var(--ok)}
+/* feynman */
+.fsteps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.fstep{background:#fff;border:1.5px solid var(--l);border-radius:12px;padding:10px;font-size:13px;font-weight:600;color:var(--ac);display:flex;gap:8px;align-items:center}
+.fstep i{font-style:normal;width:24px;height:24px;border-radius:50%;background:var(--p);display:grid;place-items:center;flex:none;font-size:12px}
+.fstep.on{border-color:var(--b);color:var(--t)}.fstep.on i{background:var(--b);color:#fff}
+.fstep.done i{background:var(--ok);color:#fff}
+@media(max-width:600px){.fsteps{grid-template-columns:1fr 1fr}}
+.concept{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ac);margin:0}
+.concept+h2{margin:2px 0 12px;font-size:24px}
+.wc{font-size:13px;color:var(--ac);text-align:right;margin:-8px 0 12px}
+.crit{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px;margin:6px 0 16px}
+@media(max-width:600px){.crit{grid-template-columns:1fr}}
+.crit .lb{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:4px}
+.crit .bar{margin:0}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.lists{grid-template-columns:1fr}}
+.lst{background:var(--p);border-radius:12px;padding:12px 14px;font-size:14.5px}
+.lst b{display:block;margin-bottom:4px}
+.lst ul{margin:0;padding-left:18px}
+.lst.g{background:#E3F4EF}.lst.r{background:#FDECE4}.lst.y{background:#FFF6E5}
+.curious{display:flex;gap:12px;align-items:flex-start;margin:16px 0}
+.curious .av{width:42px;height:42px;border-radius:50%;background:#FFE7A3;display:grid;place-items:center;font-size:22px;flex:none}
+.curious .qs{display:flex;flex-direction:column;gap:8px}
+.curious .q{background:#FFF6E5;border:1px solid #F3DDA0;border-radius:14px;border-top-left-radius:4px;padding:9px 13px;font-size:15px}
+.next{background:var(--bs);border-left:4px solid var(--b);padding:12px 14px;border-radius:0 10px 10px 0;margin:14px 0}
+.evo{display:flex;gap:10px;align-items:flex-end;height:90px;margin:10px 0 4px}
+.evo div{flex:1;max-width:60px;background:color-mix(in srgb,var(--b) 45%,#fff);border-radius:6px 6px 0 0;position:relative;min-height:4px}
+.evo div:last-child{background:var(--b)}
+.evo div span{position:absolute;top:-19px;left:0;right:0;text-align:center;font-size:12px;font-weight:700}
+.evol{display:flex;gap:10px;font-size:12px;color:var(--ac)}.evol span{flex:1;max-width:60px;text-align:center}
+@media print{header .lang,details.cfg,#setup,.row,.noprint,.how,.comp,.sugs{display:none!important}body{background:#fff}.out,.card{border:0;box-shadow:none}}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <div class="lang hide" id="lang"></div>
+  <div class="brand"><span class="ico" id="ico">💊</span><div><h1 id="h1">PK Tutor — Farmacocinética I</h1><p id="sub">Resuelve problemas de bolo intravenoso monocompartimental con razonamiento guiado.</p></div></div>
+</div></header>
+<main>
+  <div class="how" id="how"></div>
+  <details class="card cfg" id="cfg">
+    <summary id="cfgSum"></summary>
+    <div class="inner">
+      <p class="nota" id="cfgNota"></p>
+      <div class="f"><label for="k" id="kLab"></label><input type="password" id="k" placeholder="sk-..." autocomplete="off"></div>
+      <div class="row"><button class="gh" id="save" type="button"></button><button class="gh" id="wipe" type="button"></button><span class="msg" id="kmsg"></span></div>
+    </div>
+  </details>
+  <section class="card" id="setup">
+    <div id="form"></div>
+    <div class="row"><button class="go" id="run" type="button"></button><span class="msg" id="msg" role="status" aria-live="polite"></span></div>
+  </section>
+  <section id="stage"></section>
+</main>
+<footer><span id="pie">Alejandro Ruiz Picazo · Universidad Miguel Hernandez · España</span> · <span id="foot"></span></footer>
+
+<script id="spec" type="application/json">{"forja":2,"tipo":"chat","slug":"pk-tutor-farmacocinetica","modelo":"gpt-6-luna","icono":"💊","color":"#6B4FD8","systemPrompt":"Eres PK Tutor, un tutor socrático experto en Biofarmacia y Farmacocinética para estudiantes de Farmacia que cursan Farmacocinética I. Ayudas a resolver problemas de administración intravenosa en bolo con un modelo farmacocinético monocompartimental. Adapta el vocabulario y la profundidad al nivel indicado, sin presuponer conocimientos avanzados; si falta contexto, pregunta solo por información académica necesaria para el problema.\n\nGuía al estudiante por etapas: primero pídele que identifique los datos, las incógnitas y las unidades; después, que proponga una estrategia y seleccione las ecuaciones pertinentes. Según los datos y lo que se solicite, selecciona las relaciones farmacocinéticas apropiadas para un modelo monocompartimental tras bolo IV. Puedes trabajar, entre otras, con \\(C(t)=C_0e^{-kt}\\), \\(C_0=D/V_d\\), \\(t_{1/2}=\\ln(2)/k\\), \\(Cl=kV_d\\) y las relaciones correspondientes de AUC cuando proceda. No uses una ecuación sin comprobar primero que sus supuestos y los datos disponibles son adecuados, verificando que se aplican bajo los supuestos del modelo y con unidades coherentes. Haz que realice los cálculos paso a paso, comprueba conversiones, cifras significativas y consistencia dimensional, y pídele que interprete el resultado en el contexto del ejercicio. Si detectas un error, señala el paso concreto sin sustituir de inmediato el razonamiento del estudiante: ofrece pistas progresivas y preguntas focalizadas. Mantente en personaje durante la conversación y no reveles la resolución completa hasta que el estudiante haya intentado al menos un paso y, después, la solicite explícitamente. Si esa condición se cumple, muestra la resolución paso a paso y explica el razonamiento.\n\nNunca inventes referencias bibliográficas. Nunca pongas calificaciones. Nunca des la respuesta directamente: guía con preguntas; si el estudiante pide directamente la solución, intenta primero que realice al menos un paso por sí mismo y, si después solicita explícitamente ver la resolución, puedes mostrarla paso a paso explicando el razonamiento. Nunca pidas datos personales. Indica cuando algo sea incierto. Nunca des diagnósticos ni tratamientos reales.\n\nLímites innegociables: No inventar referencias bibliográficas. No pedir datos personales. Indicar cuando algo sea incierto.\n\nReglas específicas de resolución: nunca inventes datos que no aparezcan en el enunciado ni modifiques sus valores o unidades. No afirmes que un resultado numérico es correcto sin comprobar previamente el cálculo y la consistencia dimensional. Si faltan datos necesarios, indícalo y pregunta por ellos en lugar de asumirlos. Cuando detectes un error, intenta clasificarlo como error conceptual, elección incorrecta de la relación farmacocinética, error algebraico o aritmético, error de unidades o error de interpretación. Si existen varias estrategias válidas, acepta cualquiera que sea farmacocinéticamente correcta.","instruccionSalida":"Responde en español, con intervenciones breves y ordenadas, normalmente una pregunta o pista cada vez. Usa ecuaciones y unidades legibles; reserva la resolución completa para cuando se cumplan las condiciones indicadas.","evaluacion":"Al finalizar el ejercicio o cuando el estudiante indique que ha terminado, sal del personaje y ofrece una devolución formativa, sin nota numérica. Organízala en: (1) qué razonó correctamente; (2) qué conviene revisar, señalando el paso concreto y explicando por qué; (3) comprobación de ecuaciones, supuestos del modelo monocompartimental, cálculos, unidades y coherencia del resultado; (4) interpretación farmacocinética del resultado y si su magnitud resulta razonable en el contexto del ejercicio; y (5) una sugerencia práctica para mejorar en un próximo problema. Basa la devolución únicamente en lo observado en la conversación y en criterios de farmacocinética. Si procede y el estudiante ya intentó al menos un paso y solicitó explícitamente la resolución, añade la resolución razonada completa, paso a paso, con unidades e interpretación. Si persiste una incertidumbre, indícala claramente.","opciones":{},"base":"es","idiomas":["es"],"autor":"Alejandro Ruiz Picazo","institucion":"Universidad Miguel Hernandez","pais":"España","orcid":"0000-0003-1281-8208","licencia":"CC-BY-4.0","campos":[{"id":"modo_trabajo","tipo":"select","opciones":["Resolver un problema","Consultar una duda","Quiero practicar"],"requerido":true},{"id":"tema","tipo":"select","opciones":["Concentración-tiempo","C0 y volumen de distribución","constante de eliminación y semivida","aclaramiento","AUC","combinación de parámetros","No sé qué tema es"],"requerido":true},{"id":"enunciado_duda","tipo":"textarea","opciones":[],"requerido":true},{"id":"nivel_ayuda","tipo":"select","opciones":["Solo preguntas orientadoras","Pistas progresivas","Ayuda paso a paso"],"requerido":true}],"i18n":{"es":{"titulo":"PK Tutor — Farmacocinética I","subtitulo":"Resuelve problemas de bolo intravenoso monocompartimental con razonamiento guiado.","instrucciones":"Elige el modo, el tema y el nivel de ayuda, y comparte el enunciado o tu duda. Resuelve cada paso con el tutor y explica tu razonamiento; puedes pedir más pistas cuando las necesites.","boton":"Empezar","bienvenida":"Hola, soy PK Tutor. Trabajaremos Farmacocinética I paso a paso. Si tienes un problema, comparte el enunciado; si tienes una duda, explícamela; y si quieres practicar, puedo proponerte una situación dentro del tema seleccionado. Intentaré ayudarte a razonar antes de darte la solución.","sugerencias":["Quiero resolver este problema: …","¿Qué ecuación debería usar para calcular la semivida?","He obtenido este resultado; ¿me ayudas a revisar mis unidades?"],"campos":[{"label":"Modo de trabajo","placeholder":"Elige cómo quieres trabajar","opciones":["Resolver un problema","Consultar una duda","Quiero practicar"]},{"label":"Tema","placeholder":"Elige un tema","opciones":["Concentración-tiempo","C0 y volumen de distribución","constante de eliminación y semivida","aclaramiento","AUC","combinación de parámetros","No sé qué tema es"]},{"label":"Enunciado o duda","placeholder":"Escribe el enunciado completo o explica tu duda; incluye los datos y sus unidades.","opciones":[]},{"label":"Nivel de ayuda","placeholder":"Elige cuánta ayuda quieres","opciones":["Solo preguntas orientadoras","Pistas progresivas","Ayuda paso a paso"]}]}}}</script>
+<script>
+(function(){
+  'use strict';
+  var SPEC = JSON.parse(document.getElementById('spec').textContent);
+  var PREVIEW = null; /*__PREVIEW__*/
+  var KEY = 'ia_openai_key';
+  var $ = function(id){ return document.getElementById(id); };
+  var TIPO = SPEC.tipo || 'generador';
+
+  var UI = {
+    es:{ cfg:'🔑 Configurar clave de OpenAI', nota:'Tu clave se guarda únicamente en este navegador y solo se envía a OpenAI. No introduzcas datos personales de estudiantes.',
+      kLab:'Clave de API', save:'Guardar clave', wipe:'Borrar', saved:'Clave guardada.', loaded:'Clave cargada.', wiped:'Clave borrada de este navegador.',
+      needKey:'Escribe la clave antes de guardar.', noKey:'Falta la clave de API: ábrela arriba y guárdala.', fill:'Completa: ', gen:'Pensando…', ready:'Listo.',
+      copy:'Copiar', dl:'Descargar', print:'Imprimir / PDF', copied:'Copiado al portapapeles.', quota:'Tu cuenta de OpenAI no tiene saldo. Recarga y vuelve a intentarlo.',
+      badKey:'La clave no es válida. Revísala en el panel de configuración.', net:'No hay conexión con OpenAI. Revisa tu red.', empty:'El modelo no devolvió texto. Vuelve a intentarlo.', badJson:'La respuesta llegó con un formato inesperado. Vuelve a intentarlo.',
+      lang:'Responde íntegramente en español.', start:'Empezar', preview:'Vista previa en ForjaIA: se usa la clave que guardaste en ForjaIA.',
+      foot:'Hecha con ForjaIA (Universidad Miguel Hernández de Elche). Las respuestas proceden de un modelo de lenguaje: revísalas con criterio.',
+      other:'Otra versión', refineL:'¿Quieres cambiar algo?', refinePh:'Por ejemplo: hazlo más breve, añade un ejemplo, sube la dificultad…', refineB:'Aplicar cambio', refinePre:'Modifica tu respuesta anterior según esta indicación y devuelve la versión completa: ',
+      send:'Enviar', ph:'Escribe tu mensaje… (Intro para enviar)', end:'Terminar y recibir devolución', evalT:'Devolución', typing:'Escribiendo…', newS:'Nueva sesión', dlChat:'Descargar conversación', you:'Tú', needMore:'Conversa un poco más antes de pedir la devolución.', kick:'Comienza la sesión.',
+      nq:'Número de preguntas', q:'Pregunta', of:'de', next:'Siguiente', finish:'Ver resultado', correct:'¡Correcto!', wrong:'No es correcta', rightIs:'Respuesta correcta: ', score:'Tu resultado', review:'Revisión', newQ:'Nuevo cuestionario', retry:'Repetir estas preguntas', dlRes:'Descargar resultados', yours:'Tu respuesta: ',
+      band0:'Sigue practicando: repasa las explicaciones y vuelve a intentarlo.', band1:'¡Buen trabajo! Revisa las que fallaste para afianzarlas.', band2:'¡Excelente! Dominas este tema.',
+      nc:'Número de tarjetas', tap:'Toca la tarjeta para girarla (o pulsa la barra espaciadora)', know:'✓ Me la sé', again:'↺ Repasar', shuffle:'Barajar', csv:'Descargar para Anki (CSV)', hint:'Ver pista', done:'¡Has repasado todas las tarjetas!', doneS:'Intentos totales: ', restart:'Empezar de nuevo', newD:'Nuevas tarjetas', card:'Tarjeta', known:'dominadas', front:'Pregunta', back:'Respuesta',
+      st1:'Elige el concepto', st2:'Explícalo', st3:'Recibe preguntas', st4:'Mejóralo', explL:'Tu explicación', explPh:'Explícalo con tus palabras, como si hablaras con alguien que no sabe nada del tema. Usa un ejemplo cotidiano.', words:'palabras', analyze:'Analizar mi explicación', crit:{claridad:'Claridad', precision:'Precisión', completitud:'Completitud', sencillez:'Sencillez'},
+      strengths:'Lo que funciona', gaps:'Lagunas', errors:'Imprecisiones', jargon:'Términos sin explicar', curious:'Un estudiante curioso te pregunta…', nextStep:'Siguiente paso', improve:'Mejorar mi explicación', round:'Ronda', evo:'Tu evolución (media sobre 10)', minW:'Escribe al menos 30 palabras.', dlF:'Descargar mis rondas', concept:'Concepto', newC:'Otro concepto' },
+    en:{ cfg:'🔑 Set up your OpenAI key', nota:'Your key is stored in this browser only and is sent only to OpenAI. Never enter identifiable student data.',
+      kLab:'API key', save:'Save key', wipe:'Delete', saved:'Key saved.', loaded:'Key loaded.', wiped:'Key deleted from this browser.',
+      needKey:'Enter the key before saving.', noKey:'No API key yet: open the panel above and save one.', fill:'Please complete: ', gen:'Thinking…', ready:'Done.',
+      copy:'Copy', dl:'Download', print:'Print / PDF', copied:'Copied to clipboard.', quota:'Your OpenAI account has no credit left. Top it up and try again.',
+      badKey:'That key is not valid. Check it in the settings panel.', net:'Cannot reach OpenAI. Check your connection.', empty:'The model returned no text. Please try again.', badJson:'The answer came back in an unexpected format. Please try again.',
+      lang:'Answer entirely in English.', start:'Start', preview:'ForjaIA preview: using the key you saved in ForjaIA.',
+      foot:'Built with ForjaIA (Universidad Miguel Hernández de Elche). Answers come from a language model: review them critically.',
+      other:'Another version', refineL:'Want to change something?', refinePh:'For example: make it shorter, add an example, raise the difficulty…', refineB:'Apply change', refinePre:'Revise your previous answer following this instruction and return the full version: ',
+      send:'Send', ph:'Type your message… (Enter to send)', end:'Finish and get feedback', evalT:'Feedback', typing:'Typing…', newS:'New session', dlChat:'Download conversation', you:'You', needMore:'Talk a little longer before asking for feedback.', kick:'Start the session.',
+      nq:'Number of questions', q:'Question', of:'of', next:'Next', finish:'See result', correct:'Correct!', wrong:'Not quite', rightIs:'Correct answer: ', score:'Your result', review:'Review', newQ:'New quiz', retry:'Retry these questions', dlRes:'Download results', yours:'Your answer: ',
+      band0:'Keep practising: read the explanations and try again.', band1:'Good work! Review the ones you missed to lock them in.', band2:'Excellent! You have mastered this topic.',
+      nc:'Number of cards', tap:'Tap the card to flip it (or press the space bar)', know:'✓ I know it', again:'↺ Review again', shuffle:'Shuffle', csv:'Download for Anki (CSV)', hint:'Show hint', done:'You have reviewed every card!', doneS:'Total attempts: ', restart:'Start over', newD:'New cards', card:'Card', known:'mastered', front:'Question', back:'Answer',
+      st1:'Pick the concept', st2:'Explain it', st3:'Get questions', st4:'Improve it', explL:'Your explanation', explPh:'Explain it in your own words, as if talking to someone who knows nothing about the topic. Use an everyday example.', words:'words', analyze:'Analyse my explanation', crit:{claridad:'Clarity', precision:'Accuracy', completitud:'Completeness', sencillez:'Simplicity'},
+      strengths:'What works', gaps:'Gaps', errors:'Inaccuracies', jargon:'Unexplained terms', curious:'A curious student asks you…', nextStep:'Next step', improve:'Improve my explanation', round:'Round', evo:'Your progress (average out of 10)', minW:'Write at least 30 words.', dlF:'Download my rounds', concept:'Concept', newC:'Another concept' },
+    pt:{ cfg:'🔑 Configurar chave da OpenAI', nota:'Sua chave fica somente neste navegador e só é enviada à OpenAI. Não insira dados pessoais de estudantes.',
+      kLab:'Chave de API', save:'Salvar chave', wipe:'Apagar', saved:'Chave salva.', loaded:'Chave carregada.', wiped:'Chave apagada deste navegador.',
+      needKey:'Digite a chave antes de salvar.', noKey:'Falta a chave de API: abra o painel acima e salve-a.', fill:'Complete: ', gen:'Pensando…', ready:'Pronto.',
+      copy:'Copiar', dl:'Baixar', print:'Imprimir / PDF', copied:'Copiado para a área de transferência.', quota:'Sua conta da OpenAI está sem saldo. Recarregue e tente de novo.',
+      badKey:'A chave não é válida. Verifique no painel de configuração.', net:'Sem conexão com a OpenAI. Verifique sua rede.', empty:'O modelo não devolveu texto. Tente novamente.', badJson:'A resposta veio em um formato inesperado. Tente novamente.',
+      lang:'Responda inteiramente em português do Brasil.', start:'Começar', preview:'Prévia no ForjaIA: usa a chave que você salvou no ForjaIA.',
+      foot:'Feito com ForjaIA (Universidad Miguel Hernández de Elche). As respostas vêm de um modelo de linguagem: revise-as com critério.',
+      other:'Outra versão', refineL:'Quer mudar algo?', refinePh:'Por exemplo: deixe mais curto, acrescente um exemplo, aumente a dificuldade…', refineB:'Aplicar mudança', refinePre:'Modifique sua resposta anterior segundo esta indicação e devolva a versão completa: ',
+      send:'Enviar', ph:'Escreva sua mensagem… (Enter para enviar)', end:'Encerrar e receber devolutiva', evalT:'Devolutiva', typing:'Digitando…', newS:'Nova sessão', dlChat:'Baixar conversa', you:'Você', needMore:'Converse um pouco mais antes de pedir a devolutiva.', kick:'Comece a sessão.',
+      nq:'Número de questões', q:'Questão', of:'de', next:'Próxima', finish:'Ver resultado', correct:'Correto!', wrong:'Não é a correta', rightIs:'Resposta correta: ', score:'Seu resultado', review:'Revisão', newQ:'Novo questionário', retry:'Repetir estas questões', dlRes:'Baixar resultados', yours:'Sua resposta: ',
+      band0:'Continue praticando: revise as explicações e tente de novo.', band1:'Bom trabalho! Revise as que errou para consolidar.', band2:'Excelente! Você domina este tema.',
+      nc:'Número de cartões', tap:'Toque no cartão para virá-lo (ou pressione a barra de espaço)', know:'✓ Já sei', again:'↺ Revisar', shuffle:'Embaralhar', csv:'Baixar para Anki (CSV)', hint:'Ver dica', done:'Você revisou todos os cartões!', doneS:'Tentativas totais: ', restart:'Recomeçar', newD:'Novos cartões', card:'Cartão', known:'dominados', front:'Pergunta', back:'Resposta',
+      st1:'Escolha o conceito', st2:'Explique', st3:'Receba perguntas', st4:'Melhore', explL:'Sua explicação', explPh:'Explique com suas palavras, como se falasse com alguém que não sabe nada do tema. Use um exemplo do dia a dia.', words:'palavras', analyze:'Analisar minha explicação', crit:{claridad:'Clareza', precision:'Precisão', completitud:'Completude', sencillez:'Simplicidade'},
+      strengths:'O que funciona', gaps:'Lacunas', errors:'Imprecisões', jargon:'Termos sem explicar', curious:'Um estudante curioso pergunta…', nextStep:'Próximo passo', improve:'Melhorar minha explicação', round:'Rodada', evo:'Sua evolução (média sobre 10)', minW:'Escreva pelo menos 30 palavras.', dlF:'Baixar minhas rodadas', concept:'Conceito', newC:'Outro conceito' }
+  };
+  var ETIQ = {es:'ES', en:'EN', pt:'PT'};
+
+  var LS = (function(){
+    try{ var t='__forja'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return window.localStorage; }
+    catch(e){ var m={}; return {getItem:function(k){return m.hasOwnProperty(k)?m[k]:null;},setItem:function(k,v){m[k]=String(v);},removeItem:function(k){delete m[k];}}; }
+  })();
+
+  var base = SPEC.base || 'es';
+  var IDIOMAS = (SPEC.idiomas && SPEC.idiomas.length) ? SPEC.idiomas : [base];
+  var gl = LS.getItem('forja_lang_' + SPEC.slug);
+  var lang = (IDIOMAS.indexOf(gl) > -1) ? gl : base;
+  function C(){ return SPEC.i18n[lang] || SPEC.i18n[base]; }
+  function T(){ return UI[lang] || UI.es; }
+  function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function el(tag, cls, html){ var e = document.createElement(tag); if(cls) e.className = cls; if(html != null) e.innerHTML = html; return e; }
+  function say(txt, kind){ var m = $('msg'); m.innerHTML = kind === 'wait' ? '<span class="spin"></span>' + esc(txt) : esc(txt); m.className = 'msg' + (kind && kind !== 'wait' ? ' ' + kind : ''); }
+
+  /* ── Markdown ── */
+  function inl(s){
+    s = esc(s);
+    return s.replace(/`([^`]+)`/g,'<code>$1</code>')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/(^|[^*\w])\*([^*\n]+)\*/g,'$1<em>$2</em>')
+      .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  }
+  var RX_LI = /^\s*([-*+•]|\d+[.)])\s+/;
+  function md(t){
+    var L = String(t || '').replace(/\r/g,'').split('\n'), h = [], i = 0, m;
+    while(i < L.length){
+      var l = L[i];
+      if(/^\s*$/.test(l)){ i++; continue; }
+      if((m = l.match(/^\s*(#{1,5})\s+(.*)$/))){ var lv = Math.min(5, m[1].length + 1); h.push('<h'+lv+'>'+inl(m[2].replace(/#+\s*$/,''))+'</h'+lv+'>'); i++; continue; }
+      if(/^\s*(---+|\*\*\*+|___+)\s*$/.test(l)){ h.push('<hr>'); i++; continue; }
+      if(/^\s*```/.test(l)){ var c = []; i++; while(i < L.length && !/^\s*```/.test(L[i])){ c.push(L[i]); i++; } i++; h.push('<pre><code>'+esc(c.join('\n'))+'</code></pre>'); continue; }
+      if(/^\s*\|.*\|\s*$/.test(l)){
+        var rows = []; while(i < L.length && /^\s*\|.*\|\s*$/.test(L[i])){ rows.push(L[i]); i++; }
+        var cells = function(r){ return r.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(function(x){ return x.trim(); }); };
+        var o = '<div class="tw"><table>', st = 0;
+        if(rows.length > 1 && /^[\s|:\-]+$/.test(rows[1])){ o += '<thead><tr>' + cells(rows[0]).map(function(x){ return '<th>'+inl(x)+'</th>'; }).join('') + '</tr></thead>'; st = 2; }
+        o += '<tbody>'; for(var k = st; k < rows.length; k++) o += '<tr>' + cells(rows[k]).map(function(x){ return '<td>'+inl(x)+'</td>'; }).join('') + '</tr>';
+        h.push(o + '</tbody></table></div>'); continue;
+      }
+      if(/^\s*>/.test(l)){ var q = []; while(i < L.length && /^\s*>/.test(L[i])){ q.push(L[i].replace(/^\s*>\s?/,'')); i++; } h.push('<blockquote>'+inl(q.join(' '))+'</blockquote>'); continue; }
+      if(RX_LI.test(l)){
+        var ord = /^\s*\d/.test(l), it = [];
+        while(i < L.length && RX_LI.test(L[i])){
+          it.push(L[i].replace(RX_LI,'')); i++;
+          while(i < L.length && /^\s{2,}\S/.test(L[i]) && !RX_LI.test(L[i])){ it[it.length-1] += ' ' + L[i].trim(); i++; }
+        }
+        var tg = ord ? 'ol' : 'ul';
+        h.push('<'+tg+'>' + it.map(function(x){ return '<li>'+inl(x)+'</li>'; }).join('') + '</'+tg+'>'); continue;
+      }
+      var p = [];
+      do { p.push(inl(L[i])); i++; }
+      while(i < L.length && !/^\s*$/.test(L[i]) && !/^\s*(#{1,5}\s|```|>|\|.*\|\s*$)/.test(L[i]) && !RX_LI.test(L[i]));
+      h.push('<p>'+p.join('<br>')+'</p>');
+    }
+    return h.join('');
+  }
+
+  /* ── Llamada a OpenAI (con adaptación automática de parámetros) ── */
+  function getKey(){ return (PREVIEW && PREVIEW.key) || LS.getItem(KEY) || ($('k').value || '').trim(); }
+  function cuerpo(modelo, msgs, max, json){
+    var b = {model: modelo, messages: msgs};
+    if(json) b.response_format = {type:'json_object'};
+    if(/^(gpt-[56]|o[134])/.test(modelo)){ b.reasoning_effort = 'low'; b.max_completion_tokens = Math.max(8000, max * 4); }
+    else { b.temperature = 0.7; b.max_tokens = max; }
+    return b;
+  }
+  function api(msgs, opt){
+    opt = opt || {};
+    var key = getKey();
+    if(!key) return Promise.reject(new Error('__NOKEY__'));
+    var b = cuerpo(SPEC.modelo || 'gpt-6-luna', msgs, opt.max || 2200, opt.json), tries = 0;
+    function go(){
+      return fetch('https://api.openai.com/v1/chat/completions', {
+        method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer ' + key}, body: JSON.stringify(b)
+      }).then(function(r){
+        return r.json().catch(function(){ return {}; }).then(function(d){
+          if(!r.ok){
+            var e = (d && d.error) || {}, m = String(e.message || ('Error ' + r.status)), p = e.param;
+            if(!p){ var mm = m.match(/'([a-z_]+)'/); if(mm) p = mm[1]; }
+            if(r.status === 400 && tries < 4 && p && b.hasOwnProperty(p) && /unsupported|not supported|does not support|only the default/i.test(m)){
+              if(p === 'max_tokens') b.max_completion_tokens = b.max_tokens;
+              if(p === 'temperature' && /only the default/i.test(m)) { delete b.temperature; }
+              delete b[p]; tries++; return go();
+            }
+            throw new Error(m);
+          }
+          var txt = (d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content) || '';
+          if(!txt.trim()) throw new Error('__EMPTY__');
+          return txt;
+        });
+      });
+    }
+    return go();
+  }
+  function apiJSON(msgs, max){
+    return api(msgs, {json:true, max:max}).then(function(t){
+      try{ return JSON.parse(t); }
+      catch(e){ var m = t.match(/\{[\s\S]*\}/); if(m){ try{ return JSON.parse(m[0]); }catch(e2){} } throw new Error('__JSON__'); }
+    });
+  }
+  function errMsg(e){
+    var u = T(), m = (e && e.message) || '';
+    if(m === '__NOKEY__'){ $('cfg').open = true; return u.noKey; }
+    if(m === '__EMPTY__') return u.empty;
+    if(m === '__JSON__') return u.badJson;
+    if(/quota|billing/i.test(m)) return u.quota;
+    if(/Incorrect API key|invalid_api_key|401/.test(m)) return u.badKey;
+    if(/Failed to fetch|NetworkError|Load failed/i.test(m)) return u.net;
+    return m;
+  }
+  function sistema(extra, ctx){
+    return [SPEC.systemPrompt, SPEC.instruccionSalida, extra || '', ctx ? ('Contexto de la sesión:\n' + ctx) : '', T().lang].filter(Boolean).join('\n\n');
+  }
+
+  /* ── Utilidades ── */
+  function baja(txt, nombre, mime){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([txt], {type: mime || 'text/markdown'}));
+    a.download = nombre; document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 400);
+  }
+  function copia(txt){
+    function viejo(){ var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} ta.remove(); }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){}, viejo); } else viejo();
+    say(T().copied, 'ok');
+  }
+  function nombreFich(ext){ return (SPEC.slug || 'resultado') + '-' + new Date().toISOString().slice(0,10) + ext; }
+  function baraja(a){ for(var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+  function stageClear(){ var s = $('stage'); s.innerHTML = ''; return s; }
+
+  /* ── Idioma ── */
+  if(IDIOMAS.length > 1){
+    var cont = $('lang'); cont.classList.remove('hide');
+    IDIOMAS.forEach(function(l){
+      var b = document.createElement('button'); b.type = 'button'; b.dataset.l = l; b.textContent = ETIQ[l] || l.toUpperCase();
+      b.onclick = function(){ lang = l; LS.setItem('forja_lang_' + SPEC.slug, l); pinta(); };
+      cont.appendChild(b);
+    });
+  }
+
+  function pinta(){
+    var c = C(), u = T();
+    document.documentElement.lang = lang;
+    document.title = c.titulo;
+    $('h1').textContent = c.titulo; $('sub').textContent = c.subtitulo || '';
+    $('how').innerHTML = c.instrucciones ? '<span>💡</span><span>' + esc(c.instrucciones) + '</span>' : '';
+    $('cfgSum').textContent = u.cfg; $('cfgNota').textContent = PREVIEW ? u.preview : u.nota;
+    $('kLab').textContent = u.kLab; $('save').textContent = u.save; $('wipe').textContent = u.wipe;
+    $('run').textContent = c.boton || u.start; $('foot').textContent = u.foot;
+    Array.prototype.forEach.call(document.querySelectorAll('#lang button'), function(b){ b.setAttribute('aria-pressed', b.dataset.l === lang ? 'true' : 'false'); });
+    pintaForm();
+    if(MODO.repinta) MODO.repinta();
+  }
+
+  /* ── Formulario ── */
+  var valores = {};
+  function extraSelect(){
+    if(TIPO === 'quiz') return {id:'__n', label:T().nq, ops:[3,5,8,10,15], def:(SPEC.opciones && SPEC.opciones.n) || 5};
+    if(TIPO === 'tarjetas') return {id:'__n', label:T().nc, ops:[6,8,10,12,15,20], def:(SPEC.opciones && SPEC.opciones.n) || 10};
+    return null;
+  }
+  function pintaForm(){
+    var c = C(), form = $('form');
+    Array.prototype.forEach.call(form.querySelectorAll('[data-ci]'), function(e){ valores[e.dataset.ci] = e.value; });
+    form.innerHTML = '';
+    var grid = el('div', SPEC.campos.length > 1 ? 'g2' : '');
+    SPEC.campos.forEach(function(campo, i){
+      var txt = (c.campos && c.campos[i]) ? c.campos[i] : {label: campo.id, placeholder:'', opciones: campo.opciones};
+      var w = el('div', 'f');
+      if(campo.tipo === 'textarea') w.style.gridColumn = '1 / -1';
+      var lab = el('label'); lab.setAttribute('for', 'c_' + campo.id); lab.textContent = txt.label + (campo.requerido ? ' *' : '');
+      var e;
+      if(campo.tipo === 'textarea'){ e = document.createElement('textarea'); }
+      else if(campo.tipo === 'select'){
+        e = document.createElement('select');
+        var ops = (txt.opciones && txt.opciones.length) ? txt.opciones : campo.opciones;
+        ops.forEach(function(o, k){ var op = document.createElement('option'); op.value = campo.opciones[k] || o; op.textContent = o; e.appendChild(op); });
+      } else { e = document.createElement('input'); e.type = (campo.tipo === 'number' ? 'number' : 'text'); }
+      e.id = 'c_' + campo.id; e.dataset.ci = campo.id;
+      if(txt.placeholder && campo.tipo !== 'select') e.placeholder = txt.placeholder;
+      if(valores[campo.id] !== undefined) e.value = valores[campo.id];
+      w.appendChild(lab); w.appendChild(e); grid.appendChild(w);
+    });
+    var x = extraSelect();
+    if(x){
+      var w2 = el('div', 'f'), l2 = el('label'); l2.setAttribute('for', 'c_' + x.id); l2.textContent = x.label;
+      var s2 = document.createElement('select'); s2.id = 'c_' + x.id; s2.dataset.ci = x.id;
+      x.ops.forEach(function(n){ var op = document.createElement('option'); op.value = n; op.textContent = n; s2.appendChild(op); });
+      s2.value = valores[x.id] !== undefined ? valores[x.id] : String(x.def);
+      w2.appendChild(l2); w2.appendChild(s2); grid.appendChild(w2);
+    }
+    form.appendChild(grid);
+    if(TIPO === 'chat' && !SPEC.campos.length) $('setup').classList.add('hide');
+  }
+  function recoge(){
+    var c = C(), faltan = [], datos = [];
+    SPEC.campos.forEach(function(campo, i){
+      var lb = (c.campos && c.campos[i]) ? c.campos[i].label : campo.id;
+      var v = ($('c_' + campo.id).value || '').trim();
+      if(campo.requerido && !v) faltan.push(lb);
+      if(v) datos.push(lb + ': ' + v);
+    });
+    if(faltan.length){ say(T().fill + faltan.join(', ') + '.', 'err'); return null; }
+    var nEl = $('c___n');
+    return {texto: datos.join('\n'), n: nEl ? parseInt(nEl.value, 10) : 0, primero: SPEC.campos.length ? ($('c_' + SPEC.campos[0].id).value || '').trim() : ''};
+  }
+
+  /* ── Clave ── */
+  var saved = LS.getItem(KEY) || '';
+  if(PREVIEW && PREVIEW.key){ $('k').value = PREVIEW.key; $('kmsg').textContent = T().loaded; $('kmsg').className = 'msg ok'; }
+  else if(saved){ $('k').value = saved; $('kmsg').textContent = T().loaded; $('kmsg').className = 'msg ok'; }
+  else { $('cfg').open = true; }
+  $('save').onclick = function(){
+    var v = $('k').value.trim();
+    if(!v){ $('kmsg').textContent = T().needKey; $('kmsg').className = 'msg err'; return; }
+    LS.setItem(KEY, v); if(PREVIEW) PREVIEW.key = v;
+    $('kmsg').textContent = T().saved; $('kmsg').className = 'msg ok'; $('cfg').open = false;
+  };
+  $('wipe').onclick = function(){ LS.removeItem(KEY); if(PREVIEW) PREVIEW.key = ''; $('k').value = ''; $('kmsg').textContent = T().wiped; $('kmsg').className = 'msg'; };
+
+  function ocupado(on){ $('run').disabled = on; }
+
+  /* ════════ MODOS ════════ */
+  var MODO = {};
+
+  /* 1 · GENERADOR */
+  function modoGenerador(){
+    var hist = [], ultimo = '';
+    function muestra(){
+      var s = stageClear(), u = T();
+      var out = el('div', 'out', md(ultimo)); s.appendChild(out);
+      var r = el('div', 'row noprint');
+      r.style.marginBottom = '16px';
+      [['copy', function(){ copia(ultimo); }], ['dl', function(){ baja(ultimo, nombreFich('.md')); }], ['print', function(){ window.print(); }], ['other', function(){ $('run').onclick(); }]].forEach(function(b){
+        var x = el('button', 'gh'); x.type = 'button'; x.textContent = u[b[0]]; x.onclick = b[1]; r.appendChild(x);
+      });
+      s.appendChild(r);
+      if(SPEC.opciones && SPEC.opciones.refinar){
+        var card = el('div', 'card noprint');
+        card.innerHTML = '<label for="ref">' + esc(u.refineL) + '</label><div class="row" style="flex-wrap:nowrap"><input id="ref" placeholder="' + esc(u.refinePh) + '"><button class="go" type="button" id="refB">' + esc(u.refineB) + '</button></div>';
+        s.appendChild(card);
+        var fn = function(){
+          var v = $('ref').value.trim(); if(!v) return;
+          hist.push({role:'assistant', content: ultimo}); hist.push({role:'user', content: u.refinePre + v});
+          $('refB').disabled = true; say(u.gen, 'wait');
+          api(hist, {max: 2600}).then(function(t){ ultimo = t; muestra(); say(T().ready, 'ok'); })
+            .catch(function(e){ hist.splice(-2, 2); say(errMsg(e), 'err'); if($('refB')) $('refB').disabled = false; });
+        };
+        $('refB').onclick = fn; $('ref').onkeydown = function(ev){ if(ev.key === 'Enter') fn(); };
+      }
+      out.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    $('run').onclick = function(){
+      var d = recoge(); if(!d) return;
+      ocupado(true); say(T().gen, 'wait');
+      hist = [{role:'system', content: sistema('Formato: Markdown con títulos, listas y, si procede, tablas.')}, {role:'user', content: d.texto || T().start}];
+      api(hist, {max: 2600}).then(function(t){ ultimo = t; muestra(); say(T().ready, 'ok'); })
+        .catch(function(e){ say(errMsg(e), 'err'); }).then(function(){ ocupado(false); });
+    };
+    MODO.repinta = function(){ if(ultimo) muestra(); };
+  }
+
+  /* 2 · TUTOR / SIMULACIÓN (chat) */
+  function modoChat(){
+    var hist = [], vis = [], terminado = false, ocupadoC = false, ctx = '';
+    var REGLAS = 'Mantienes una conversación por turnos: escribe solo tu propio turno, nunca el del estudiante. Sé breve salvo que se te pida lo contrario.';
+    function monta(){
+      var s = stageClear(), u = T(), c = C();
+      var box = el('div', 'card chat');
+      box.innerHTML = '<div class="chead"><span class="av">' + esc(SPEC.icono || '💬') + '</span><b>' + esc(c.titulo) + '</b><span class="sp"></span>'
+        + '<button class="gh" type="button" id="cNew">' + esc(u.newS) + '</button><button class="gh" type="button" id="cDl">' + esc(u.dlChat) + '</button></div>'
+        + '<div class="log" id="log" aria-live="polite"></div><div class="sugs" id="sugs"></div>'
+        + '<form class="comp" id="comp"><textarea id="inp" rows="2" placeholder="' + esc(u.ph) + '"></textarea><button class="go" type="submit" id="sendB">' + esc(u.send) + '</button></form>'
+        + '<div class="cfoot row"><button class="gh" type="button" id="endB">🏁 ' + esc(u.end) + '</button><span class="msg" id="cmsg"></span></div>';
+      s.appendChild(box);
+      s.appendChild(el('div', 'out hide', ''));
+      $('cNew').onclick = function(){ if(SPEC.campos.length){ stageClear(); $('setup').classList.remove('hide'); $('setup').scrollIntoView({behavior:'smooth'}); } else inicia(''); };
+      $('cDl').onclick = function(){ baja(transcripcion(), nombreFich('.md')); };
+      $('comp').onsubmit = function(ev){ ev.preventDefault(); envia($('inp').value); };
+      $('inp').onkeydown = function(ev){ if(ev.key === 'Enter' && !ev.shiftKey){ ev.preventDefault(); envia($('inp').value); } };
+      $('endB').onclick = termina;
+      pintaLog();
+    }
+    function transcripcion(){
+      var u = T(), c = C();
+      return '# ' + c.titulo + '\n\n' + vis.map(function(m){ return '**' + (m.r === 'u' ? u.you : (SPEC.icono || '') + ' ' + c.titulo) + ':** ' + m.t; }).join('\n\n');
+    }
+    function pintaLog(){
+      var log = $('log'); if(!log) return; var u = T();
+      log.innerHTML = '';
+      vis.forEach(function(m){
+        if(m.r === 'eval') return;
+        log.appendChild(el('div', 'who' + (m.r === 'u' ? ' r' : ''), esc(m.r === 'u' ? u.you : (SPEC.icono || '🤖'))));
+        log.appendChild(el('div', 'bub ' + (m.r === 'u' ? 'me' : 'bot'), m.r === 'u' ? esc(m.t).replace(/\n/g,'<br>') : md(m.t)));
+      });
+      if(ocupadoC) log.appendChild(el('div', 'typing', '<span class="spin"></span>' + esc(u.typing)));
+      log.scrollTop = log.scrollHeight;
+      var sg = $('sugs'); sg.innerHTML = '';
+      var sug = C().sugerencias || [];
+      if(!terminado && vis.filter(function(m){ return m.r === 'u'; }).length === 0){
+        sug.forEach(function(x){ var b = el('button', 'sug'); b.type = 'button'; b.textContent = x; b.onclick = function(){ envia(x); }; sg.appendChild(b); });
+      }
+      var ev = vis.filter(function(m){ return m.r === 'eval'; })[0], outE = $('stage').querySelector('.out');
+      if(ev && outE){ outE.innerHTML = '<h2>🏁 ' + esc(u.evalT) + '</h2>' + md(ev.t); outE.classList.remove('hide'); }
+      $('inp').disabled = terminado || ocupadoC; $('sendB').disabled = terminado || ocupadoC; $('endB').disabled = terminado || ocupadoC;
+    }
+    function cmsg(t, k){ var m = $('cmsg'); if(m){ m.textContent = t; m.className = 'msg' + (k ? ' ' + k : ''); } }
+    function llamar(extraUser){
+      ocupadoC = true; pintaLog();
+      var msgs = extraUser ? hist.concat([{role:'user', content: extraUser}]) : hist;
+      return api(msgs, {max: 1800}).then(function(t){ ocupadoC = false; return t; }, function(e){ ocupadoC = false; pintaLog(); cmsg(errMsg(e), 'err'); throw e; });
+    }
+    function inicia(contexto){
+      ctx = contexto; terminado = false; vis = [];
+      hist = [{role:'system', content: sistema(REGLAS, ctx)}];
+      monta();
+      var bv = C().bienvenida;
+      if(bv && !ctx){ hist.push({role:'assistant', content: bv}); vis.push({r:'b', t: bv}); pintaLog(); return; }
+      hist.push({role:'user', content: T().kick});
+      llamar().then(function(t){ hist.push({role:'assistant', content: t}); vis.push({r:'b', t: t}); pintaLog(); }).catch(function(){});
+    }
+    function envia(txt){
+      txt = String(txt || '').trim(); if(!txt || terminado || ocupadoC) return;
+      $('inp').value = ''; cmsg('');
+      hist.push({role:'user', content: txt}); vis.push({r:'u', t: txt});
+      llamar().then(function(t){ hist.push({role:'assistant', content: t}); vis.push({r:'b', t: t}); pintaLog(); $('inp').focus(); })
+        .catch(function(){ hist.pop(); vis.pop(); pintaLog(); $('inp').value = txt; });
+    }
+    function termina(){
+      if(vis.filter(function(m){ return m.r === 'u'; }).length < 2){ cmsg(T().needMore, 'err'); return; }
+      var instr = SPEC.evaluacion || 'La conversación ha terminado. Sal del personaje y ofrece una devolución formativa estructurada.';
+      llamar('[FIN DE LA SESIÓN] ' + instr).then(function(t){
+        terminado = true; vis.push({r:'eval', t: t}); pintaLog();
+        var o = $('stage').querySelector('.out'); if(o) o.scrollIntoView({behavior:'smooth', block:'start'});
+      }).catch(function(){});
+    }
+    $('run').onclick = function(){
+      var d = recoge(); if(!d) return;
+      say('', ''); $('setup').classList.add('hide'); inicia(d.texto);
+    };
+    MODO.repinta = function(){ if($('log')) monta(); };
+    if(!SPEC.campos.length) setTimeout(function(){ inicia(''); }, 0);
+  }
+
+  /* 3 · CUESTIONARIO */
+  function modoQuiz(){
+    var P = [], idx = 0, resp = [];
+    function formato(n){
+      var f = (SPEC.opciones && SPEC.opciones.formato) || 'multiple';
+      var tipo = f === 'vf' ? ' de verdadero o falso: "opciones" contiene exactamente dos elementos, «Verdadero» y «Falso» en el idioma de respuesta'
+        : f === 'mixta' ? ' combinando opción múltiple (4 opciones) y verdadero/falso (2 opciones)' : ' de opción múltiple con 4 opciones cada una';
+      return 'Genera exactamente ' + n + ' preguntas' + tipo + '. Devuelve EXCLUSIVAMENTE un objeto JSON con esta forma: {"preguntas":[{"enunciado":"","opciones":["",""],"correcta":0,"explicacion":""}]}. "correcta" es el índice, empezando en 0, de la única opción correcta. Reparte la posición de la respuesta correcta. Sin markdown dentro de los textos.';
+    }
+    function pregunta(){
+      var s = stageClear(), u = T(), p = P[idx];
+      var card = el('div', 'card');
+      card.innerHTML = '<div class="qtop"><span>' + esc(u.q) + ' ' + (idx + 1) + ' ' + esc(u.of) + ' ' + P.length + '</span><span class="sp"></span><span>✓ ' + resp.filter(function(r){ return r.ok; }).length + '</span></div>'
+        + '<div class="bar"><span style="width:' + Math.round(idx / P.length * 100) + '%"></span></div>'
+        + '<h2 class="qtext">' + inl(p.enunciado) + '</h2><div class="opts" id="opts"></div><div class="fb hide" id="fb"></div>'
+        + '<div class="row"><button class="go hide" type="button" id="qNext">' + esc(idx + 1 < P.length ? u.next : u.finish) + ' →</button></div>';
+      s.appendChild(card);
+      var opts = $('opts');
+      p.opciones.forEach(function(o, k){
+        var b = el('button', 'opt', '<span class="lt">' + String.fromCharCode(65 + k) + '</span><span>' + inl(o) + '</span>'); b.type = 'button';
+        b.onclick = function(){
+          var ok = k === p.correcta;
+          resp[idx] = {elegida: k, ok: ok};
+          Array.prototype.forEach.call(opts.children, function(x, j){ x.disabled = true; if(j === p.correcta) x.classList.add('right'); else if(j === k) x.classList.add('wrong'); });
+          var fb = $('fb'); fb.className = 'fb ' + (ok ? 'good' : 'bad');
+          fb.innerHTML = '<b>' + (ok ? '✅ ' + esc(u.correct) : '❌ ' + esc(u.wrong)) + '</b>' + (ok ? '' : esc(u.rightIs) + '<strong>' + inl(p.opciones[p.correcta]) + '</strong><br>') + inl(p.explicacion || '');
+          $('qNext').classList.remove('hide'); $('qNext').focus();
+        };
+        opts.appendChild(b);
+      });
+      $('qNext').onclick = function(){ idx++; if(idx < P.length) pregunta(); else resultado(); };
+      card.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function resultado(){
+      var s = stageClear(), u = T();
+      var ok = resp.filter(function(r){ return r && r.ok; }).length, pct = Math.round(ok / P.length * 100);
+      var band = pct >= 80 ? u.band2 : pct >= 50 ? u.band1 : u.band0;
+      var card = el('div', 'card');
+      var html = '<h2 style="text-align:center;margin:0 0 8px">' + esc(u.score) + '</h2><div class="ring" style="--v:' + pct + '"><span>' + ok + '/' + P.length + '</span></div>'
+        + '<p style="text-align:center;font-size:17px;margin:0 0 16px">' + esc(band) + '</p>'
+        + '<div class="row center noprint" style="margin-bottom:12px"><button class="go" type="button" id="qNew">' + esc(u.newQ) + '</button><button class="gh" type="button" id="qRetry">' + esc(u.retry) + '</button><button class="gh" type="button" id="qDl">' + esc(u.dlRes) + '</button><button class="gh" type="button" id="qPr">' + esc(u.print) + '</button></div>'
+        + '<h3>' + esc(u.review) + '</h3>';
+      P.forEach(function(p, i){
+        var r = resp[i] || {};
+        html += '<div class="rev"><b>' + (i + 1) + '. </b>' + inl(p.enunciado) + '<br><span class="' + (r.ok ? 'ok' : 'ko') + '">' + (r.ok ? '✓ ' : '✗ ') + esc(u.yours) + inl(p.opciones[r.elegida] || '—') + '</span>'
+          + (r.ok ? '' : '<br><span class="ok">' + esc(u.rightIs) + inl(p.opciones[p.correcta]) + '</span>') + '<br><span style="color:#5D7691">' + inl(p.explicacion || '') + '</span></div>';
+      });
+      card.innerHTML = html; s.appendChild(card);
+      $('qNew').onclick = function(){ stageClear(); $('setup').scrollIntoView({behavior:'smooth'}); };
+      $('qRetry').onclick = function(){ idx = 0; resp = []; pregunta(); };
+      $('qPr').onclick = function(){ window.print(); };
+      $('qDl').onclick = function(){
+        var t = '# ' + C().titulo + '\n\n**' + u.score + ':** ' + ok + '/' + P.length + ' (' + pct + '%)\n\n';
+        P.forEach(function(p, i){ var r = resp[i] || {}; t += '## ' + (i + 1) + '. ' + p.enunciado + '\n\n' + p.opciones.map(function(o, k){ return '- ' + String.fromCharCode(65 + k) + ') ' + o + (k === p.correcta ? ' ✓' : '') + (k === r.elegida && !r.ok ? ' ✗' : ''); }).join('\n') + '\n\n> ' + (p.explicacion || '') + '\n\n'; });
+        baja(t, nombreFich('.md'));
+      };
+      card.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    $('run').onclick = function(){
+      var d = recoge(); if(!d) return;
+      ocupado(true); say(T().gen, 'wait');
+      apiJSON([{role:'system', content: sistema(formato(d.n || 5))}, {role:'user', content: d.texto || T().start}], 3000)
+        .then(function(j){
+          P = (j.preguntas || []).filter(function(p){ return p && p.enunciado && Array.isArray(p.opciones) && p.opciones.length >= 2 && p.correcta >= 0 && p.correcta < p.opciones.length; })
+            .map(function(p){ p.correcta = parseInt(p.correcta, 10); return p; });
+          if(!P.length) throw new Error('__JSON__');
+          idx = 0; resp = []; say(T().ready, 'ok'); pregunta();
+        })
+        .catch(function(e){ say(errMsg(e), 'err'); }).then(function(){ ocupado(false); });
+    };
+    MODO.repinta = function(){ if(P.length && idx < P.length && $('opts')){ pregunta(); } };
+  }
+
+  /* 4 · TARJETAS */
+  function modoTarjetas(){
+    var D = [], cola = [], sabidas = 0, intentos = 0;
+    function formato(n){ return 'Genera exactamente ' + n + ' tarjetas de estudio. Devuelve EXCLUSIVAMENTE un objeto JSON con esta forma: {"tarjetas":[{"anverso":"","reverso":"","pista":""}]}. "pista" puede quedar vacía. Sin markdown dentro de los textos.'; }
+    function tarjeta(){
+      var s = stageClear(), u = T();
+      if(!cola.length){ fin(); return; }
+      var t = D[cola[0]];
+      var card = el('div', 'card');
+      card.innerHTML = '<div class="qtop"><span>' + esc(u.card) + ' ' + (D.length - cola.length + 1) + ' ' + esc(u.of) + ' ' + D.length + '</span><span class="sp"></span><span>✓ ' + sabidas + ' ' + esc(u.known) + '</span></div>'
+        + '<div class="bar"><span style="width:' + Math.round(sabidas / D.length * 100) + '%"></span></div>'
+        + '<div class="flip" id="flip" tabindex="0" role="button"><div class="flip-in"><div class="face front"><small>' + esc(u.front) + '</small><div>' + inl(t.anverso) + '</div>'
+        + (t.pista ? '<button class="hintb" type="button" id="hintB">💡 ' + esc(u.hint) + '</button>' : '') + '</div>'
+        + '<div class="face back"><small>' + esc(u.back) + '</small><div>' + inl(t.reverso) + '</div></div></div></div>'
+        + '<p class="tapnote">' + esc(u.tap) + '</p>'
+        + '<div class="row center" style="margin-bottom:14px"><button class="gh bad2" type="button" id="dAgain">' + esc(u.again) + '</button><button class="go ok2" type="button" id="dKnow">' + esc(u.know) + '</button></div>'
+        + '<div class="row center noprint"><button class="gh" type="button" id="dSh">🔀 ' + esc(u.shuffle) + '</button><button class="gh" type="button" id="dCsv">⬇ ' + esc(u.csv) + '</button></div>';
+      s.appendChild(card);
+      var f = $('flip');
+      f.onclick = function(ev){ if(ev.target && ev.target.id === 'hintB') return; f.classList.toggle('on'); };
+      f.onkeydown = function(ev){ if(ev.key === ' ' || ev.key === 'Enter'){ ev.preventDefault(); f.classList.toggle('on'); } };
+      if($('hintB')) $('hintB').onclick = function(ev){ ev.stopPropagation(); this.textContent = '💡 ' + t.pista; };
+      $('dKnow').onclick = function(){ intentos++; sabidas++; cola.shift(); tarjeta(); };
+      $('dAgain').onclick = function(){ intentos++; cola.push(cola.shift()); tarjeta(); };
+      $('dSh').onclick = function(){ baraja(cola); tarjeta(); };
+      $('dCsv').onclick = csv;
+      f.focus({preventScroll:true});
+    }
+    function csv(){
+      var q = function(x){ return '"' + String(x || '').replace(/"/g,'""') + '"'; };
+      baja(D.map(function(t){ return q(t.anverso) + ',' + q(t.reverso + (t.pista ? ' (' + t.pista + ')' : '')); }).join('\n'), nombreFich('.csv'), 'text/csv');
+    }
+    function fin(){
+      var s = stageClear(), u = T();
+      var card = el('div', 'card', '<div style="text-align:center;font-size:54px">🎉</div><h2 style="text-align:center;margin:4px 0">' + esc(u.done) + '</h2><p style="text-align:center;color:#5D7691">' + esc(u.doneS) + intentos + ' · ' + D.length + ' ' + esc(u.known) + '</p>'
+        + '<div class="row center"><button class="go" type="button" id="dRe">' + esc(u.restart) + '</button><button class="gh" type="button" id="dNew">' + esc(u.newD) + '</button><button class="gh" type="button" id="dCsv2">' + esc(u.csv) + '</button></div>');
+      s.appendChild(card);
+      $('dRe').onclick = function(){ cola = D.map(function(_, i){ return i; }); sabidas = 0; intentos = 0; tarjeta(); };
+      $('dNew').onclick = function(){ stageClear(); $('setup').scrollIntoView({behavior:'smooth'}); };
+      $('dCsv2').onclick = csv;
+    }
+    $('run').onclick = function(){
+      var d = recoge(); if(!d) return;
+      ocupado(true); say(T().gen, 'wait');
+      apiJSON([{role:'system', content: sistema(formato(d.n || 10))}, {role:'user', content: d.texto || T().start}], 2600)
+        .then(function(j){
+          D = (j.tarjetas || []).filter(function(t){ return t && t.anverso && t.reverso; });
+          if(!D.length) throw new Error('__JSON__');
+          cola = D.map(function(_, i){ return i; }); sabidas = 0; intentos = 0;
+          say(T().ready, 'ok'); tarjeta(); $('stage').scrollIntoView({behavior:'smooth', block:'start'});
+        })
+        .catch(function(e){ say(errMsg(e), 'err'); }).then(function(){ ocupado(false); });
+    };
+    MODO.repinta = function(){ if(D.length && $('flip')) tarjeta(); };
+  }
+
+  /* 5 · MÉTODO FEYNMAN */
+  function modoFeynman(){
+    var ctx = '', concepto = '', rondas = [], borrador = '', fase = 0;
+    var FMT = 'Evalúa la explicación del estudiante. Devuelve EXCLUSIVAMENTE un objeto JSON con esta forma: {"puntuaciones":{"claridad":0,"precision":0,"completitud":0,"sencillez":0},"resumen":"","fortalezas":[],"lagunas":[],"errores":[],"jerga":[],"preguntas":[],"siguiente_paso":""}. Puntuaciones enteras de 0 a 10. Máximo 3 elementos por lista; deja la lista vacía si no aplica. "jerga": términos técnicos que usa sin explicar. "preguntas": 2 o 3 preguntas ingenuas pero certeras que haría alguien sin formación en la materia. No reescribas la explicación por el estudiante. Sin markdown dentro de los textos.';
+    function pasos(n){
+      var u = T();
+      return '<div class="fsteps">' + [u.st1, u.st2, u.st3, u.st4].map(function(t, i){ return '<div class="fstep' + (i === n ? ' on' : i < n ? ' done' : '') + '"><i>' + (i < n ? '✓' : i + 1) + '</i>' + esc(t) + '</div>'; }).join('') + '</div>';
+    }
+    function media(p){ p = p || {}; var k = ['claridad','precision','completitud','sencillez'], s = 0; k.forEach(function(x){ s += +p[x] || 0; }); return Math.round(s / 4 * 10) / 10; }
+    function lista(t, arr, cls){ arr = (arr || []).filter(Boolean); if(!arr.length) return ''; return '<div class="lst ' + cls + '"><b>' + esc(t) + '</b><ul>' + arr.map(function(x){ return '<li>' + inl(x) + '</li>'; }).join('') + '</ul></div>'; }
+    function explicar(){
+      fase = rondas.length ? 3 : 1;
+      var s = stageClear(), u = T();
+      var card = el('div', 'card');
+      card.innerHTML = pasos(fase) + '<p class="concept">' + esc(u.concept) + '</p><h2>' + esc(concepto) + '</h2>'
+        + (rondas.length ? '<p style="margin:0 0 12px;color:#5D7691">' + esc(u.round) + ' ' + (rondas.length + 1) + '</p>' : '')
+        + '<label for="expl">' + esc(u.explL) + '</label><textarea id="expl" style="min-height:190px" placeholder="' + esc(u.explPh) + '"></textarea>'
+        + '<div class="wc" id="wc">0 ' + esc(u.words) + '</div>'
+        + '<div class="row"><button class="go" type="button" id="fGo">🔍 ' + esc(u.analyze) + '</button><span class="msg" id="fmsg"></span></div>';
+      s.appendChild(card);
+      var ta = $('expl'); ta.value = borrador;
+      var cuenta = function(){ var n = (ta.value.trim().match(/\S+/g) || []).length; $('wc').textContent = n + ' ' + u.words; borrador = ta.value; return n; };
+      ta.oninput = cuenta; cuenta();
+      $('fGo').onclick = function(){
+        if(cuenta() < 30){ $('fmsg').textContent = u.minW; $('fmsg').className = 'msg err'; return; }
+        $('fGo').disabled = true; $('fmsg').innerHTML = '<span class="spin"></span>' + esc(u.gen); $('fmsg').className = 'msg';
+        var prev = rondas.length ? '\n\nPuntuaciones de la ronda anterior: ' + JSON.stringify(rondas[rondas.length - 1].r.puntuaciones) + '. Comenta brevemente en "resumen" si ha mejorado.' : '';
+        apiJSON([{role:'system', content: sistema(FMT, ctx)}, {role:'user', content: 'Ronda ' + (rondas.length + 1) + '. Explicación del estudiante:\n"""\n' + ta.value.trim() + '\n"""' + prev}], 2000)
+          .then(function(j){ rondas.push({texto: ta.value.trim(), r: j}); resultado(); })
+          .catch(function(e){ $('fmsg').textContent = errMsg(e); $('fmsg').className = 'msg err'; $('fGo').disabled = false; });
+      };
+      ta.focus({preventScroll:true});
+      card.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function resultado(){
+      fase = 2;
+      var s = stageClear(), u = T(), R = rondas[rondas.length - 1].r || {}, P = R.puntuaciones || {};
+      var html = pasos(2) + '<p class="concept">' + esc(u.concept) + ' · ' + esc(u.round) + ' ' + rondas.length + '</p><h2>' + esc(concepto) + '</h2>'
+        + (R.resumen ? '<p style="font-size:16px;margin:0 0 12px">' + inl(R.resumen) + '</p>' : '')
+        + '<div class="crit">' + ['claridad','precision','completitud','sencillez'].map(function(k){ var v = Math.max(0, Math.min(10, +P[k] || 0)); return '<div><div class="lb"><span>' + esc(u.crit[k]) + '</span><span>' + v + '/10</span></div><div class="bar"><span style="width:' + (v * 10) + '%"></span></div></div>'; }).join('') + '</div>';
+      var qs = (R.preguntas || []).filter(Boolean);
+      if(qs.length) html += '<div class="curious"><span class="av">🤔</span><div class="qs"><b style="font-size:14px">' + esc(u.curious) + '</b>' + qs.map(function(q){ return '<div class="q">' + inl(q) + '</div>'; }).join('') + '</div></div>';
+      html += '<div class="lists">' + lista(u.strengths, R.fortalezas, 'g') + lista(u.gaps, R.lagunas, 'y') + lista(u.errors, R.errores, 'r') + lista(u.jargon, R.jerga, '') + '</div>';
+      if(R.siguiente_paso) html += '<div class="next"><b>👉 ' + esc(u.nextStep) + ':</b> ' + inl(R.siguiente_paso) + '</div>';
+      if(rondas.length > 1){
+        html += '<h3 style="margin:18px 0 26px">' + esc(u.evo) + '</h3><div class="evo">' + rondas.map(function(r){ var m = media(r.r.puntuaciones); return '<div style="height:' + (m * 10) + '%"><span>' + m + '</span></div>'; }).join('') + '</div>'
+          + '<div class="evol">' + rondas.map(function(_, i){ return '<span>' + esc(u.round) + ' ' + (i + 1) + '</span>'; }).join('') + '</div>';
+      }
+      html += '<div class="row noprint" style="margin-top:18px"><button class="go" type="button" id="fImp">✍️ ' + esc(u.improve) + '</button><button class="gh" type="button" id="fDl">' + esc(u.dlF) + '</button><button class="gh" type="button" id="fNew">' + esc(u.newC) + '</button></div>';
+      var card = el('div', 'card', html); s.appendChild(card);
+      $('fImp').onclick = explicar;
+      $('fNew').onclick = function(){ rondas = []; borrador = ''; concepto = ''; fase = 0; inicial(); $('setup').classList.remove('hide'); $('setup').scrollIntoView({behavior:'smooth'}); };
+      $('fDl').onclick = function(){
+        var t = '# ' + C().titulo + ' — ' + concepto + '\n\n';
+        rondas.forEach(function(r, i){
+          var p = r.r.puntuaciones || {};
+          t += '## ' + u.round + ' ' + (i + 1) + '\n\n' + r.texto + '\n\n' + ['claridad','precision','completitud','sencillez'].map(function(k){ return '- ' + u.crit[k] + ': ' + (p[k] || 0) + '/10'; }).join('\n') + '\n\n'
+            + [[u.gaps, r.r.lagunas], [u.errors, r.r.errores], [u.curious, r.r.preguntas]].map(function(x){ return (x[1] && x[1].length) ? '**' + x[0] + '**\n' + x[1].map(function(y){ return '- ' + y; }).join('\n') + '\n' : ''; }).join('\n') + '\n';
+        });
+        baja(t, nombreFich('.md'));
+      };
+      card.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    $('run').onclick = function(){
+      var d = recoge(); if(!d) return;
+      ctx = d.texto; concepto = d.primero || C().titulo; rondas = []; borrador = '';
+      say('', ''); $('setup').classList.add('hide'); explicar();
+    };
+    function inicial(){ $('stage').innerHTML = '<div class="card" style="padding:14px 16px 0">' + pasos(0) + '</div>'; }
+    MODO.repinta = function(){ if(!concepto){ inicial(); return; } if(fase === 2 && rondas.length) resultado(); else if($('expl')) explicar(); };
+    inicial();
+  }
+
+  ({generador:modoGenerador, chat:modoChat, quiz:modoQuiz, tarjetas:modoTarjetas, feynman:modoFeynman}[TIPO] || modoGenerador)();
+  pinta();
+})();
+</script>
+</body>
+</html>
